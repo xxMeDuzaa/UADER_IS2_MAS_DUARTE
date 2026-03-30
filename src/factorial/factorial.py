@@ -24,19 +24,31 @@ def factorial(num):
 # --- MODIFICACIÓN SOLICITADA --- 
 # Si el largo es menor a 2, significa que no se pasó el número por consola.
 if len(sys.argv) < 2:
-    entrada = input("No se detectó un argumento. Por favor, ingrese el número: ")
+    entrada = input("Ingrese número o rango (ej. 5, 4-8, -10 o 50-): ")
 else:
     entrada = sys.argv[1]
-# -------------------------------
 
 try:
     if "-" in entrada:
-        # Dividimos el rango y convertimos a entero cada parte
-        desde, hasta = map(int, entrada.split("-"))
+        partes = entrada.split("-")
+
+        if partes[0] == "":
+            desde = 1
+            hasta = int(partes[1])
+        # Lógica para rango "desde-" (ej. "50-")
+        elif partes[1] == "":
+            desde = int(partes[0])
+            hasta = 60
+        # Lógica para rango completo "desde-hasta" (ej. "4-8")
+        else:
+            desde = int(partes[0])
+            hasta = int(partes[1])
+            
         for i in range(desde, hasta + 1):
             print(f"El factorial de {i} es {factorial(i)}")
     else:
         n = int(entrada)
         print(f"El factorial de {n} es {factorial(n)}")
+        
 except ValueError:
     print("Error: Debe ingresar un numero o rango válido (ej. 5 o 4-8).")
