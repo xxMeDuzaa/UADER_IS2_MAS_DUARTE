@@ -29,10 +29,10 @@ else:
     entrada = sys.argv[1]
 
 try:
-    if "-" in entrada:
+    if "-" in entrada:  # Si el input contiene un guión, se asume que es un rango.
         partes = entrada.split("-")
 
-        if partes[0] == "":
+        if partes[0] == "": 
             desde = 1
             hasta = int(partes[1])
         # Lógica para rango "desde-" (ej. "50-")
@@ -49,6 +49,6 @@ try:
     else:
         n = int(entrada)
         print(f"El factorial de {n} es {factorial(n)}")
-        
+
 except ValueError:
     print("Error: Debe ingresar un numero o rango válido (ej. 5 o 4-8).")
