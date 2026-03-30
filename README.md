@@ -25,7 +25,6 @@ A continuación se detallan las acciones realizadas para configurar el espacio d
 ## 2. Visualización de Resultados
 Como parte del desarrollo, se generan gráficos para analizar la convergencia de algoritmos (como la Conjetura de Collatz). A continuación, se presenta una representación visual del entorno de trabajo:
 
-![Logo FCyT-UADER](https://uader.edu.ar/wp-content/uploads/2020/06/logo-fcyt.png)
 
 ## 3. Referencias Externas
 Para más información sobre la sintaxis de Python o las pautas de la facultad, puede consultar:
