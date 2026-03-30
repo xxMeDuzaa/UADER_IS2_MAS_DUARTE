@@ -30,9 +30,13 @@ else:
 # -------------------------------
 
 try:
-    n = int(entrada)
-    print(f"El factorial de {n} es {factorial(n)}")
+    if "-" in entrada:
+        # Dividimos el rango y convertimos a entero cada parte
+        desde, hasta = map(int, entrada.split("-"))
+        for i in range(desde, hasta + 1):
+            print(f"El factorial de {i} es {factorial(i)}")
+    else:
+        n = int(entrada)
+        print(f"El factorial de {n} es {factorial(n)}")
 except ValueError:
-    print("Error: Debe ingresar un número entero válido.")
-
-    
+    print("Error: Debe ingresar un numero o rango válido (ej. 5 o 4-8).")
