@@ -10,7 +10,7 @@ import sys
 from io import StringIO
 from unittest.mock import patch
 
-import rpn
+import chatGPT._pycache_.rpn as rpn
 
 
 class TestRPNBasicOperations(unittest.TestCase):
