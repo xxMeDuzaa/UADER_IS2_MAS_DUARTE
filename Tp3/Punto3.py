@@ -1,3 +1,7 @@
+#*------------------------------------------------------------------------
+#* Ingeniería de Software II
+#* Patrones de Creación - Factory Method
+#*------------------------------------------------------------------------
 
 class Hamburguesa:
     """Clase que representa una hamburguesa con diferentes métodos de entrega"""

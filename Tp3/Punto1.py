@@ -1,3 +1,8 @@
+#*------------------------------------------------------------------------
+#* Ingeniería de Software II
+#* Patrones de Creación - Singleton
+#*------------------------------------------------------------------------
+
 import threading
 
 class SingletonFactorial:
