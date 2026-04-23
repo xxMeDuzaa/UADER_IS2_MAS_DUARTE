@@ -123,7 +123,7 @@ class DirectorAviones:
 #*------------------- Código de prueba -------------------
 if __name__ == "__main__":
     print("=" * 60)
-    print("✈️  SISTEMA DE CONSTRUCCIÓN DE AVIONES ✈️")
+    print("--  SISTEMA DE CONSTRUCCIÓN DE AVIONES --")
     print("=" * 60)
     print()
     

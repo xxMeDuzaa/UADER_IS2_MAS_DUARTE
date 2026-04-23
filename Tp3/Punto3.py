@@ -3,40 +3,73 @@
 #* Patrones de Creación - Factory Method
 #*------------------------------------------------------------------------
 
-class Hamburguesa:
-    """Clase que representa una hamburguesa con diferentes métodos de entrega"""
-    
-    def __init__(self, metodo_entrega: str):
+from abc import ABC, abstractmethod
+
+# -------------------- Producto abstracto --------------------
+class Hamburguesa(ABC):
+    """Interfaz común para todas las hamburguesas."""
+    @abstractmethod
+    def entregar(self) -> None:
+        """Imprime el método de entrega específico."""
+        pass
+
+# -------------------- Productos concretos --------------------
+class HamburguesaMostrador(Hamburguesa):
+    def entregar(self) -> None:
+        print("Hamburguesa entregada en MOSTRADOR")
+
+class HamburguesaRetiro(Hamburguesa):
+    def entregar(self) -> None:
+        print("Hamburguesa RETIRADA por el cliente")
+
+class HamburguesaDelivery(Hamburguesa):
+    def entregar(self) -> None:
+        print("Hamburguesa enviada por DELIVERY")
+
+# -------------------- Creador (Factory Method) --------------------
+class CreadorHamburguesas:
+    """
+    Clase que actúa como Factory Method.
+    Centraliza la creación de hamburguesas según el método de entrega.
+    """
+    @staticmethod
+    def crear_hamburguesa(metodo_entrega: str) -> Hamburguesa:
         """
-        Inicializa la hamburguesa con el método de entrega especificado
+        Método fábrica que retorna la instancia adecuada según el método.
         
         Args:
-            metodo_entrega: Puede ser "mostrador", "retiro" o "delivery"
+            metodo_entrega: "mostrador", "retiro" o "delivery"
+        
+        Returns:
+            Hamburguesa concreta correspondiente
+        
+        Raises:
+            ValueError: si el método no es válido
         """
-        self.metodo_entrega = metodo_entrega
-    
-    def entregar(self):
-        """Imprime el método de entrega de la hamburguesa"""
-        if self.metodo_entrega == "mostrador":
-            print(f"Hamburguesa entregada en MOSTRADOR")
-        elif self.metodo_entrega == "retiro":
-            print(f"Hamburguesa RETIRADA por el cliente")
-        elif self.metodo_entrega == "delivery":
-            print(f"Hamburguesa enviada por DELIVERY")
+        metodo = metodo_entrega.strip().lower()
+        if metodo == "mostrador":
+            return HamburguesaMostrador()
+        elif metodo == "retiro":
+            return HamburguesaRetiro()
+        elif metodo == "delivery":
+            return HamburguesaDelivery()
         else:
-            print(f"Método de entrega '{self.metodo_entrega}' no válido")
+            raise ValueError(f"Método de entrega '{metodo_entrega}' no válido")
 
 
 #*------------------- Código de prueba -------------------
 if __name__ == "__main__":
     print("=" * 50)
-    print("PEDIDOS DE HAMBURGUESAS")
+    print("PEDIDOS DE HAMBURGUESAS (Factory Method)")
     print("=" * 50)
     
-   # Lista de métodos de entrega
+    # Lista de métodos de entrega
     metodos_entrega = ["mostrador", "retiro", "delivery", "moto"]
     
-    # Recorrer la lista y crear/entregar cada hamburguesa
+    # Se utiliza el creador (factory) para obtener la hamburguesa adecuada
     for metodo in metodos_entrega:
-        hamburguesa = Hamburguesa(metodo)
-        hamburguesa.entregar()
+        try:
+            hamburguesa = CreadorHamburguesas.crear_hamburguesa(metodo)
+            hamburguesa.entregar()
+        except ValueError as e:
+            print(f"Error: {e}")
